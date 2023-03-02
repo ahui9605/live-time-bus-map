@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customer Support</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        main {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        h1,
+        h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[type=submit] {
+            background-color: grey;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 8px;
+            text-transform: uppercase;
+        }
+
+        button[type=submit]:hover {
+            background-color: black;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            border-top: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="navigation-bar">
+            <a href="index.html">Map</a>
+            <a href="time-schedule.html">Schedule</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <main>
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>For questions or concerns, please contact us at:</p>
+            <ul>
+                <li>Phone: 123-456-7890</li>
+                <li>Email: alsdjhalsdj@gmail.com</li>
+            </ul>
+        </div>
+        <form action="#" method="POST">
+            <label for="feedback">Feedback</label>
+            <textarea id="feedback" name="feedback" rows="5"
+                placeholder="Please enter your feedback here..."></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+
+</html>
