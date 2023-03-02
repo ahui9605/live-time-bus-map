@@ -28,8 +28,14 @@
         let map, infoWindow;
 
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
+            const map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 38.9072, lng: -77.0369 }, // Washington DC coordinates
+
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    mapTypeIds: []
+                },
+
                 zoom: 12,
                 streetViewControl: false, // remove street view control
                 zoomControl: true, // add zoom control
@@ -76,9 +82,10 @@
             infoWindow = new google.maps.InfoWindow();
 
             const locationButton = document.createElement("button");
-
-            locationButton.textContent = "Pan to Current Location";
+            locationButton.textContent = "Current Location";
             locationButton.classList.add("custom-map-control-button");
+
+
             map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
             locationButton.addEventListener("click", () => {
                 // Try HTML5 geolocation.
