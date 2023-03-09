@@ -1,116 +1,167 @@
-html, body {
-    height: 90%;
-    margin: 0;
+html,
+body {
+  height: 90%;
+  margin: 0;
 }
 
 #map {
-    height: 86%;
-    width: 95vw;
-    position: absolute;
-    top: 53%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 80px;
+  height: 86%;
+  width: 95vw;
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
 }
 
 #navigation-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background-color: #f2f2f2;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #f2f2f2;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
 }
 
 #navigation-bar:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #navigation-bar a {
-    margin: 0 10px;
-    color: grey;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: color 0.2s ease-in-out;
+  margin: 0 10px;
+  color: grey;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.2s ease-in-out;
 }
 
 #navigation-bar a:hover {
-    color: black !important;
+  color: black !important;
 }
 
 #navigation-bar a:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 #navigation-bar a:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 #navigation-bar a.active {
-    color: #f00;
-    text-decoration: underline;
+  color: #f00;
+  text-decoration: underline;
 }
 
-
 #main {
-    margin-top: 50px;
-    padding: 20px;
+  margin-top: 50px;
+  padding: 20px;
 }
 
 table {
-    border-collapse: collapse;
-    margin: 20px 0;
-    width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: 100%;
 }
 
 th,
 td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
 }
 
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
 
 .custom-map-control-button {
-    background-color: #fff;
-    border: 0;
-    border-radius: 2px;
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-    margin: 10px;
-    padding: 0 0.5em;
-    font: 400 18px Roboto, Arial, sans-serif;
-    overflow: hidden;
-    height: 40px;
-    cursor: pointer;
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
 }
 
 .custom-map-control-button:hover {
-    background: rgb(235, 235, 235);
+  background: rgb(235, 235, 235);
 }
 
-
 @media screen and (max-width: 300px) {
-    #navigation-bar {
-        height: 80px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+  #navigation-bar {
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    #navigation-bar a {
-        margin: 5px 0;
-        font-size: 12px;
-    }
+  #navigation-bar a {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+}
+
+/* The popup bubble styling. */
+.popup-bubble {
+  /* Position the bubble centred-above its parent. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -100%);
+  /* Style the bubble. */
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  overflow-y: auto;
+  max-height: 60px;
+  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* The parent of the bubble. A zero-height div at the top of the tip. */
+.popup-bubble-anchor {
+  /* Position the div a fixed distance above the tip. */
+  position: absolute;
+  width: 100%;
+  bottom: 8px;
+  left: 0;
+}
+
+/* This element draws the tip. */
+.popup-bubble-anchor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Center the tip horizontally. */
+  transform: translate(-50%, 0);
+  /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+  width: 0;
+  height: 0;
+  /* The tip is 8px high, and 12px wide. */
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid white;
+}
+
+/* JavaScript will position this div at the bottom of the popup tip. */
+.popup-container {
+  cursor: auto;
+  height: 0;
+  position: absolute;
+  /* The max width of the info window. */
+  width: 200px;
 }

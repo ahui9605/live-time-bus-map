@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Apply styles for devices with screen width less than 500px */
+        @media (max-width: 500px) {
+            p {
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #location {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p>Current Geolocation:</p>
+    <p id="location"></p>
+    <p id="timestamp"></p>
+
+    <script>
+        var locationDisplay = document.getElementById("location");
+        var timestampDisplay = document.getElementById("timestamp");
+
+        var watchId;
+
+        if (navigator.geolocation) {
+            watchId = navigator.geolocation.watchPosition(showPosition, showError, {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: 5000
+            });
+        } else {
+            locationDisplay.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+        function showPosition(position) {
+            locationDisplay.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+            timestampDisplay.innerHTML = "Last updated at: " + new Date().toLocaleString();
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    locationDisplay.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    locationDisplay.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    locationDisplay.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    locationDisplay.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
