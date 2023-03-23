@@ -100,19 +100,6 @@ th {
   background: rgb(235, 235, 235);
 }
 
-@media screen and (max-width: 300px) {
-  #navigation-bar {
-    height: 80px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #navigation-bar a {
-    margin: 5px 0;
-    font-size: 12px;
-  }
-}
 
 /* The popup bubble styling. */
 .popup-bubble {
@@ -164,4 +151,19 @@ th {
   position: absolute;
   /* The max width of the info window. */
   width: 200px;
+}
+
+
+@media screen and (max-width: 300px) {
+  #navigation-bar {
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #navigation-bar a {
+    margin: 5px 0;
+    font-size: 12px;
+  }
 }

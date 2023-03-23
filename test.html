@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animated Marker</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuzSGsnLGf0navFaIgbnw11PV0nOoDEh8&libraries=geometry"></script>
+    <script>
+        function initMap() {
+            // Define the initial marker position
+            var initialPosition = new google.maps.LatLng(37.7749, -122.4194);
+
+            // Create a new map centered on the initial position
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: initialPosition,
+            });
+
+            // Create a new marker with the initial position
+            var marker = new google.maps.Marker({
+                position: initialPosition,
+                map: map,
+                title: "Bus",
+            });
+
+            // Define the starting and ending positions
+            const startPosition = { lat: 38.90729555131052, lng: -76.994978865475591 };
+            const endPosition = { lat: 38.908150, lng: -76.992013 };
+
+            // Define the step size and duration of the animation
+            const stepSize = 0.0001;
+            const duration = 5000; // 5 seconds
+
+            // Calculate the number of steps needed to move from the starting to ending positions
+            const numSteps = Math.ceil(google.maps.geometry.spherical.computeDistanceBetween(startPosition, endPosition) / stepSize);
+
+            // Define the current step and the step interval
+            let currentStep = 0;
+            let stepInterval = null;
+
+            // Define an array of positions to cycle through
+            const positions = [];
+
+            for (let i = 0; i <= numSteps; i++) {
+                const newPosition = google.maps.geometry.spherical.interpolate(startPosition, endPosition, i / numSteps);
+                positions.push(newPosition);
+            }
+
+            // Set the initial index to 0
+            var index = 0;
+
+            // Update the marker position every second
+            setInterval(function () {
+                // Set the marker position to the next position in the array
+                marker.setPosition(positions[index]);
+
+                // Increment the index
+                index = (index + 1) % positions.length;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+<!-- "https://maps.googleapis.com/maps/api/js?key=AIzaSyBuzSGsnLGf0navFaIgbnw11PV0nOoDEh8&libraries=geometry&callback=initMap" -->
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            // Define the initial marker position
+            var initialPosition = new google.maps.LatLng(37.7749, -122.4194);
+
+            // Create a new map centered on the initial position
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: initialPosition
+            });
+
+            // Create a new marker with the initial position
+            var marker = new google.maps.Marker({
+                position: initialPosition,
+                map: map
+            });
+
+            // Define an array of positions to cycle through
+            var positions = [
+                new google.maps.LatLng(37.7749, -122.4194),
+                new google.maps.LatLng(37.7501, -122.4449),
+                new google.maps.LatLng(37.7933, -122.4088)
+            ];
+
+            // Set the initial index to 0
+            var index = 0;
+
+            // Update the marker position every 5 seconds
+            setInterval(function () {
+                // Increment the index
+                index = (index + 1) % positions.length;
+
+                // Set the marker position to the next position in the array
+                marker.setPosition(positions[index]);
+            }, 5000);
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuzSGsnLGf0navFaIgbnw11PV0nOoDEh8&callback=initMap"></script>
+</body>
+
+</html> -->
